@@ -1,24 +1,20 @@
 <template>
-    <div id='slide-content'>
-        <div class="md:h-[300px] w-full h-[100px] flex items-center justify-center" :style="setSlideStyle(slideObj)">
-            
-            <h1 class="text-white md:text-6xl text-3xl font-bold tracking-widest">
-                {{ slideObj.title }}
-            </h1>
-        </div>
+    <div id="slide-content">
+
     </div>
 </template>
 
 
-
 <script setup>
 import { ref, onMounted } from 'vue';
+import { getArtWorkList } from '@/api/index.js';
+
 const props = defineProps({
     slideObj: {
         type: Object,
-        default: Object
+        default: () => ({})
     }
-})
+});
 
 // 设置标题样式
 const setSlideStyle = (slideObj) => {
@@ -27,10 +23,26 @@ const setSlideStyle = (slideObj) => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-    }
+    };
+};
+
+// 获取数据
+const artWorkList = ref([]);
+
+const useArtWorkList = async () => {
+    const res = await getArtWorkList({
+        page: 1,
+        page_size: 100
+    });
+    artWorkList.value = res.results.data;
 }
+
 onMounted(() => {
+    useArtWorkList();
 });
+
+
 </script>
 
-<style scoped></style>
+
+<style scoped lang="scss"></style>

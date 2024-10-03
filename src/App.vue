@@ -14,7 +14,11 @@ import fvMain from '@/layout/main.vue'
 
 <style scoped lang="scss">
 #App {
-  min-height: 100vh;
-  background-color: var(--tkww-union-color-additional-04extra-100, #fff5ed);
+  /* 根据设计比例，16:9 是常用的宽高比 */
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: #fff;
 }
 </style>

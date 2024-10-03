@@ -23,3 +23,14 @@ export async function getIntroduction(data) {
         console.log(error, "error");
     }
 }
+
+// 获取优秀作品
+export async function getArtWorkList(data) {
+    try {
+        const response = await get({}, 'artWorkList', data)
+        return response
+    }
+    catch (error) {
+        console.log(error, "error");
+    }
+}

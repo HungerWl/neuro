@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, defineProps, nextTick, watchEffect } from 'vue';
+import { ref, reactive, nextTick, watchEffect } from 'vue';
 
 const props = defineProps({
     cards: {

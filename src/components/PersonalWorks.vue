@@ -34,11 +34,11 @@
                     disableOnInteraction: false,
                 }" @slideChange="updataChange" :effect="'fade'">
                     <swiper-slide v-for="item in slides" :key="item.id">
-                        <img :src="item.image_url" alt="" class="w-full h-[600px] object-cover">
+                        <img :src="item.image_url" alt="" class="w-full h-[700px] object-cover">
                     </swiper-slide>
                 </swiper>
-                <div class="absolute top-[30%] left-[10%] z-[99] text-3xl text-white font-bold">
-                    <div class="mb-3">让美好触手可及!</div>
+                <div class="absolute top-[40%] left-[10%] z-[99] text-3xl text-white font-bold">
+                    <div class="mb-[30px]">让美好触手可及!</div>
                     <span
                         class="hover:bg-gray-300 bg-[#fff]  text-[#000] text-sm px-[25px] py-[10px] text-center rounded-full hover:cursor-pointer   transition-all duration-300"
                         @click="goToSection(bannerIndex)">

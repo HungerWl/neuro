@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 const receiveCard = ref([])
 // 定义 props
@@ -36,7 +36,7 @@ const removeTouchEffect = (event) => {
     const card = event.currentTarget.querySelector('img');
     setTimeout(() => {
         card.classList.remove('touch-effect');
-    }, 500*2)
+    }, 500 * 2)
 }
 
 // 使用 watchEffect 自动响应 props.cards 的变化

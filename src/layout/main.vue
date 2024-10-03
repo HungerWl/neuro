@@ -3,10 +3,10 @@
         <!-- 个人作品 -->
         <PersonalWorks></PersonalWorks>
         <!-- 引言 -->
-        <Introduction></Introduction>
+        <Introduction class="mb-8"></Introduction>
         <!-- 定义各个内容区域 -->
         <section v-for="(slide, index) in slides" :key="'section-' + index" :id="'section-' + index"
-            class="content-section p-2">
+            class="content-section mb-8`        ">
             <!-- 动态组件，根据 title 动态渲染不同的组件 -->
             <component :is="getComponent(slide.title)" :slideObj="slide" />
         </section>
