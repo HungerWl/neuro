@@ -1,24 +1,16 @@
 <template>
-  <div id="App">
-    <fvHeader></fvHeader>
-    <fvMain></fvMain>
-    <fvFooter></fvFooter>
+  <div id="app"
+    class="w-full mx-auto sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
+    <Navbar />
   </div>
 </template>
 
 <script setup>
-import fvHeader from '@/layout/header.vue'
-import fvFooter from '@/layout/footer.vue'
-import fvMain from '@/layout/main.vue'
+import Navbar from '@/layouts/Navbar.vue';
 </script>
 
 <style scoped lang="scss">
-#App {
-  /* 根据设计比例，16:9 是常用的宽高比 */
-  width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  aspect-ratio: 16 / 9;
-  background: #fff;
+#app {
+  /* 可以在这里添加其他样式 */
 }
 </style>
