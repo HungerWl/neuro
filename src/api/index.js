@@ -34,3 +34,15 @@ export async function getArtWorkList(data) {
         console.log(error, "error");
     }
 }
+
+// 获取分类集合
+export async function getCategoryList(data) {
+    try {
+        const response = await get({}, 'categoryList', data)
+        if (response.code !== 200) return response.errMsg
+        return response
+    }
+    catch (error) {
+        console.log(error, "error");
+    }
+}
