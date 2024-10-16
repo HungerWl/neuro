@@ -34,3 +34,25 @@ export async function getArtWorkList(data) {
         console.log(error, "error");
     }
 }
+
+// 获取优秀作品-轮播图介绍
+export async function getBannerIntroductionList(data) {
+    try {
+        const response = await get({}, 'bannerIntroductionList', data)
+        return response
+    }
+    catch (error) {
+        console.log(error, "error");
+    }
+}
+
+// 个性定制分类
+export async function getCustomizeList(data) {
+    try {
+        const response = await get({}, 'customizedCategoryList', data)
+        return response
+    }
+    catch (error) {
+        console.log(error, "error");
+    }
+}

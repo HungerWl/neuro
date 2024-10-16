@@ -1,5 +1,5 @@
 <template>
-    <div id='header' class="sticky-top bg-[#fff5ed]">
+    <div id='header' class="bg-[#fff5ed]">
         <header class="one md:px-[15px] md:py-[10px] px-[15px] py-[5px]">
             <div class="text-[#000] text-2xl flex items-center">
                 <LottieAnimation :animationData="cameraLottie" :loop="true" :autoplay="true" width="50px" height="50px"

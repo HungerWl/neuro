@@ -3,7 +3,7 @@
     <div id="PersonalWorks">
         <div>
             <!-- 仅在小屏幕（移动端）上显示 -->
-            <div class="block md:hidden">
+            <div v-show="isMobile">
                 <swiper :grabCursor="true" :effect="'creative'" :creativeEffect="{
                     prev: {
                         shadow: true,
@@ -17,8 +17,9 @@
                         rotate: [0, -100, 0],
                     },
                 }" :modules="modules" @slideChange="updataChange">
-                    <swiper-slide v-for="item in slides" :key="item.id" class="relative">
-                        <img :src="item.image_url" alt="" class="w-full h-[200px] object-cover">
+                    <swiper-slide v-for="item in bannerStore.bannerList" :key="item.id" class="relative">
+                        <img :src="item.image_url" :alt="item.title" class="w-full h-[200px] object-cover"
+                            loading="lazy">
                         <span
                             class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-2xl text-white font-bold"
                             @click="goToSection(bannerIndex)">
@@ -28,13 +29,14 @@
                 </swiper>
             </div>
             <!-- 仅在大屏幕（PC 端）上显示 -->
-            <div class="hidden md:block relative">
+            <div v-show="!isMobile" class="relative">
                 <swiper :navigation="true" :pagination="{ clickable: true, }" :modules="modules" :autoplay="{
                     delay: 3000,
                     disableOnInteraction: false,
                 }" @slideChange="updataChange" :effect="'fade'">
-                    <swiper-slide v-for="item in slides" :key="item.id">
-                        <img :src="item.image_url" alt="" class="w-full h-[700px] object-cover">
+                    <swiper-slide v-for="item in bannerStore.bannerList" :key="item.id">
+                        <img :src="item.image_url" :alt="item.title" class="w-full md:h-[540px] h-[700px] object-cover"
+                            loading="lazy">
                     </swiper-slide>
                 </swiper>
                 <div class="absolute top-[40%] left-[10%] z-[99] text-3xl text-white font-bold">
@@ -51,33 +53,40 @@
 </template>
 
 <script setup>
-import { ref, onMounted, inject } from "vue";
+import { ref, onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { useDeviceDetect } from '@/hooks/useDeviceDetect';
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { EffectFade, Keyboard, Navigation, Pagination, EffectCreative, Autoplay } from "swiper/modules";
+import { useBannerStore } from '@/stores/banner'
 
+const { isMobile } = useDeviceDetect();
+
+// 获取轮播图数据
+const bannerStore = useBannerStore();
+// 在组件挂载时调用获取数据的方法
+onMounted(() => {
+    bannerStore.getBannerList()
+})
 
 // 导入PC端轮播图module
 const modules = [EffectFade, Navigation, Pagination, EffectCreative, Keyboard, Autoplay];
 
-// 注入全局事件函数
-const scrollToSection = inject('scrollToSection');
-// 定义幻灯片内容
-const slides = inject('slides')
 // bannerIndex
-const bannerIndex = ref(0)
+const bannerIndex = ref(0);
+
 // 轮播图切换时触发
 const updataChange = (swiper) => {
-    bannerIndex.value = swiper.activeIndex
-}
-// 点击跳转
+    bannerIndex.value = swiper.activeIndex;
+};
+
+
 const goToSection = (index) => {
-    scrollToSection(index)
+    // 实现你的导航逻辑
 }
-onMounted(() => { });
 </script>
 
 <style scoped>

@@ -13,6 +13,10 @@ import 'bootstrap';
 // 引入 Bootstrap Icons
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+import { createPinia } from 'pinia'
+
+const pinia = createPinia()
+
 // 引入 Vue 和其他依赖
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -25,5 +29,6 @@ new Vconsole();
 const app = createApp(App);
 
 
+app.use(pinia)
 // 挂载应用
 app.mount('#app');
